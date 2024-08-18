@@ -17,7 +17,7 @@
 // pin　:　ピン番号、デジタルピンは0~13、アナログピンはA0~A5のように宣言する。
 const int SPI_CS_PIN = 9;
 const int CAN_INT_PIN = 2;
-const int smrB_ledPin = 4;//3;
+const int SMR_B_LED_PIN = 4;//3;
 const int smrG_ledPin = 6;//5;
 const int smrP_ledPin = 7;//6;
 const int BG_ON_btnPin = A0;    //b
@@ -76,7 +76,7 @@ void setup() {
     delay(100);
   }
   //--入力ボタン,出力ボタンLED 初期設定--//
-  pinMode(smrB_ledPin, OUTPUT);
+  pinMode(SMR_B_LED_PIN, OUTPUT);
   pinMode(smrG_ledPin, OUTPUT);
   pinMode(smrP_ledPin, OUTPUT);
   pinMode(G_ON_btnPin, INPUT_PULLUP);
@@ -142,12 +142,12 @@ void toggleLED() {
   // 機能：SMRの変数(グローバル)の状態によりLEDの点灯処理を行う。(0:消灯, 1:点滅, 2:点灯)
 
   if (smrB_StateLed == 2) {
-    digitalWrite(smrB_ledPin, HIGH);
+    digitalWrite(SMR_B_LED_PIN, HIGH);
   } else if (smrB_StateLed == 1) {
-    blinking ? digitalWrite(smrB_ledPin, HIGH) : digitalWrite(smrB_ledPin, LOW);
+    blinking ? digitalWrite(SMR_B_LED_PIN, HIGH) : digitalWrite(SMR_B_LED_PIN, LOW);
     blinking = !blinking;
   } else if (smrB_StateLed == 0) {
-    digitalWrite(smrB_ledPin, LOW);
+    digitalWrite(SMR_B_LED_PIN, LOW);
   }
   if (smrG_StateLed == 2) {
     digitalWrite(smrG_ledPin, HIGH);
@@ -262,9 +262,9 @@ void checkBotton(int cTime) {
   }
   if (btCount_OFF == longPressThreshold) {  //カウントが”長押し判定時間”を超えると"LEDチェック処理"
     Serial.println("LED動作チェック");
-    digitalWrite(smrB_ledPin, HIGH);
+    digitalWrite(SMR_B_LED_PIN, HIGH);
     delay(100);
-    digitalWrite(smrB_ledPin, LOW);
+    digitalWrite(SMR_B_LED_PIN, LOW);
     delay(100);
     digitalWrite(smrG_ledPin, HIGH);
     delay(100);
